@@ -1,0 +1,124 @@
+<section class="footer">
+    <footer>
+        <div class = "footer_div">  
+        <nav class="cover-navigation navigation--social">
+          <ul class="navigation">
+
+          {% if site.social.weibo %}
+          <!-- Weibo -->
+          <li class="navigation__item_social">
+            <a href="http://weibo.com/{{site.social.weibo}}" title="@{{site.social.weibo}} 的微博" target="_blank">
+              <i class='social fa fa-weibo fa-2x'></i>
+              <span class="label">Weibo</span>
+            </a>
+          </li>
+          {% endif %}
+
+          {% if site.social.github %}
+          <!-- Github -->
+          <li class="navigation__item_social">
+            <a href="https://github.com/{{site.social.github}}" title="@{{site.social.github}} 的 Github" target="_blank">
+              <i class='social fa fa-github fa-2x'></i>
+              <span class="label">Github</span>
+            </a>
+          </li>
+          {% endif %}
+
+          {% if site.social.mail %}
+          <!-- Email -->
+          <li class="navigation__item_social">
+            <a href="mailto:{{site.social.mail}}" title="Contact me">
+              <i class='social fa fa-envelope fa-2x'></i>
+              <span class="label">Email</span>
+            </a>
+          </li>
+          {% endif %}
+
+          </ul>
+        </nav>
+
+        </div>
+
+<script src="/assets/fancybox/lib/jquery-1.10.1.min.js"></script>
+<script type="text/javascript" src="/assets/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+<script>
+// 给图片添加链接
+    $(document).ready(function() {
+    $("p img").each(function() {
+      var strA = "<a id='yourid' href='" + this.src + "'></a>";
+      $(this).wrapAll(strA);
+    });
+    });
+        
+    // fancybox
+    $("#yourid").fancybox({
+      openEffect    : 'elastic',
+      closeEffect   : 'elastic',
+    });
+</script>
+
+<!-- 网站运行时间的设置 -->
+<span id="timeDate">载入天数...</span>
+<span id="times">载入时分秒...</span>  我会尽力陪伴你的！
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("02/24/2020 22:12:48");
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "可怜的小站已成功存活运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+
+    <!-- waifu-tips.js 依赖 JQuery 库 -->
+    <script src="https://cdn.jsdelivr.net/gh/Tokisaki-Galaxy/Tokisaki-Galaxy.github.io/assets/waifu/jquery.min.js?v=3.3.1"></script>
+    
+    <!-- 实现拖动效果，需引入 JQuery UI -->
+    <script src="https://cdn.jsdelivr.net/gh/Tokisaki-Galaxy/Tokisaki-Galaxy.github.io/assets/waifu/jquery-ui.min.js?v=1.12.1"></script>
+    
+    <div class="waifu">
+        <div class="waifu-tips"></div>
+        <canvas id="live2d" class="live2d"></canvas>
+        <div class="waifu-tool">
+            <span class="fui-home"></span>
+            <span class="fui-chat"></span>
+            <span class="fui-eye"></span>
+            <span class="fui-user"></span>
+            <span class="fui-photo"></span>
+            <span class="fui-info-circle"></span>
+            <span class="fui-cross"></span>
+        </div>
+    </div>
+        
+    <!--Live2D-->
+    <script src="https://cdn.jsdelivr.net/gh/Tokisaki-Galaxy/Tokisaki-Galaxy.github.io/assets/waifu/waifu-tips.min.js?v=1.4.2"></script>
+    <script src="https://cdn.jsdelivr.net/gh/Tokisaki-Galaxy/Tokisaki-Galaxy.github.io/assets/waifu/live2d.min.js?v=1.0.5"></script>
+    <script type="text/javascript">
+        /* 可直接修改部分参数 */
+        live2d_settings['modelId'] = 2;                  // 默认模型 ID
+        live2d_settings['modelTexturesId'] = 60;         // 默认材质 ID
+        live2d_settings['modelStorage'] = false;         // 不储存模型 ID
+        live2d_settings['waifuSize'] = '300x267';        // 看板娘大小
+        live2d_settings['waifuTipsSize'] = '285x75';    // 提示框大小
+        live2d_settings['waifuFontSize'] = '15px';       // 提示框字体
+        live2d_settings['waifuToolFont'] = '18px';       // 工具栏字体
+        live2d_settings['waifuToolLine'] = '25px';       // 工具栏行高
+        live2d_settings['waifuToolTop'] = '-30px';       // 工具栏顶部边距
+        live2d_settings['waifuEdgeSide'] = 'right:30';
+        live2d_settings['waifuDraggable'] = 'axis-x';    // 拖拽样式
+        live2d_settings['canCloseLive2d'] = true;       // 隐藏 关闭看板娘 按钮
+        live2d_settings['canTurnToAboutPage'] = false;
+        live2d_settings['canTakeScreenshot'] = false;
+        /* 在 initModel 前添加 */
+        initModel("https://cdn.jsdelivr.net/gh/Tokisaki-Galaxy/Tokisaki-Galaxy.github.io/assets/waifu/waifu-tips.json?v=1.4.2")
+    </script>
+
+    </footer>
+</section>
